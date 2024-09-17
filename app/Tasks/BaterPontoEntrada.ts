@@ -35,7 +35,7 @@ export default class BaterPontoEntrada extends BaseTask {
     const now = new Date()
     const currentHour = now.getHours()
     const currentMinute = now.getMinutes()
-    const currentSecond = now.getSeconds()
+    // const currentSecond = now.getSeconds()
 
     console.log("Data e Hora Local do Servidor:", new Date());
 
