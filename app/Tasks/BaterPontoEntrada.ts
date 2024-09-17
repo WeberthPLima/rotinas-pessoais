@@ -1,12 +1,13 @@
 import BaterPontoController from 'App/Controllers/CronsJobs/baterPontoDecisao'
 import { BaseTask } from 'adonis5-scheduler/build/src/Scheduler/Task'
 
+
 export default class BaterPontoEntrada extends BaseTask {
   private randomMinute: number = this.generateRandomMinute()
   private lastExecutionDate: Date | null = null // Armazena a última data de execução
 
   public static get schedule() {
-    return '*/1 05-45 17 * * *' // Entre 19:30 e 19:50
+    return '*/1 05-45 20 * * *' // Entre 20:05 e 20:45
   }
 
   public static get useLock() {
@@ -36,8 +37,11 @@ export default class BaterPontoEntrada extends BaseTask {
     const currentMinute = now.getMinutes()
     const currentSecond = now.getSeconds()
 
-    console.log(`Verificando: hora atual ${currentHour}:${currentMinute}:${currentSecond}, minuto aleatório: ${this.randomMinute}`)
-    console.log('lastExecutionDate', this.lastExecutionDate)
+    console.log("Data e Hora Local do Servidor:", new Date());
+
+
+    // console.log(`Verificando: hora atual ${currentHour}:${currentMinute}:${currentSecond}, minuto aleatório: ${this.randomMinute}`)
+    // console.log('lastExecutionDate', this.lastExecutionDate)
 
     if (currentHour === 20 && currentMinute === this.randomMinute && !this.hasExecutedToday()) {
       console.log(`Executando tarefa no minuto aleatório: ${this.randomMinute}`)
