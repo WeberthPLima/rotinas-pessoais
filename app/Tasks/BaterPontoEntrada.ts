@@ -7,7 +7,7 @@ export default class BaterPontoEntrada extends BaseTask {
   private lastExecutionDate: Date | null = null // Armazena a última data de execução
 
   public static get schedule() {
-    return '*/1 * * * * *' // Entre 20:05 e 20:45
+    return '*/1 20-59 17 * * *' // Entre 20:05 e 20:45
   }
 
   public static get useLock() {
