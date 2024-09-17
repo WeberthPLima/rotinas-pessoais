@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "natura-rir-24",
+  "private_key_id": "cb142f2575320942e351ff948ed21fd8eea68cf3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC5/AmODZ4YdBlR\nUKTSEw1vC85jqS/n/56A+ZIP1fTyzl8bwHBMsskXYoDN/GG0OCM9rgE3Wh4HM+G0\nZVl6GtL9BVTw80VoZ4PNUiOR8LIbVPyTEcT4Aepobe9V7WAb7+tra7a9hbj009af\nKYflZGmFJR2glBVoF6jIT3+sy5ZB3Tim9E74+aPdd7ep8DIthag8sAidk3x5Vp00\no2BVR590GfxzH5+ZDOPhHUufEAvyqwsEkZgi8ZQowvtQmR1+dwe7RoJR/uok3x02\nCaldCGrcEft5e792Nk5PGnRuWMRaqi92fz5WckBtY2RmQFRDPctVB4m4Lm6NgYAY\nqL1kTY47AgMBAAECggEAE2ZKyNp6xyo1CdpTluYN3Ktql9KqAJUVP3bI2YYDyt/j\n480q6ZUsjJflv5a3ykigxGpGDjQENdQfkuWPc8EgiOvpdEir0Lwbb2tF8o8cxOUU\ng3KzDPuGK+ZrtJbSE5fvAoF1ykcMh90g4fE/D5ptt0mr0Xgg037ESECinK+PuMbg\n33RpxVansgsxEcdrw0wCQJOi2Ev4hO8j0hI+dGR7yq4QhbaNkgbZEewwN1DEB3G6\ndhbN/QScQOLCojYnRFyF+hrjXPRhKs5BwZBp2gH4jHEHETkEIBcYkxM538QEaEiK\nHjaM2a9Txlok9ffnbfNY+JL5bfw6nT3Vh1NkMpllAQKBgQDrSJExCu35d1EgwLHf\noXSFlVgUvhaQ/ozP/oRCitb9UV5PzPTSmyJ0MoQOYeP/aKV2tOi+Mri9t/h/JDSR\n4E5DFB+d44C/MCYtg0TBwyqWHQ6Pa4rn5nKTrge1dnBuPxsZKRhrMJpOsG9wm4dU\nYpbWwED6sK5xIuHmQ2snmFCUWwKBgQDKXD3r+4LdJ0dHLweW5tnz5Um+ZgxkoUxl\nDvKbhR/jB0BF5d1iKooAgVA1d9ricFdL0S9dUL4blwaSKCtEq6YPJwtswEpos7uc\nkZVKrL9TrqBtBMzXOHaPQc+aKBIfa9BO0mUP9LQ9Ba55GvsBwWQJji/KKZdV4/DW\nAdhXaFCToQKBgQCTyETKFR9cbgFbHS2cVYEm1qM4hB0QfZJconTYhvR6sD0YypeM\nIT0G1yPzFLFsn4IuiXsW3C0FnSRMV6VdaxI9N8qUFW2sqMWSGL17Jub82stmchoR\nhsG42Lqm0/nShXiz2Qgpa6HAgzm79TSPYE12HdOyon8vOMXDJ92KRTV3uQKBgC6p\nZn3r2Rk13XHEnnNleAyNapvE3Ea4Cu2irL6/y8KGAYQcpRflxzymlOA/avGcBgUt\nj0ZtP+kMwi8hpBiJnBkSX8gL7xyFlVVdHJfDjbq2IbgBy1o1YuFVw5FAfC1Spw4F\n5dfwDT+k975lQkv9VBv/9XUgcg0UKoyukDxXiX0BAoGAexG0P0wLW8HU3JwUSVfT\ngDUMc1G34eENSneHMYFrZjP0o6qu4wYwGpZdME2dsJyMK/I74Y0JCNsFsU2yCLUh\nTnKeE72seEArUtEcCKqX5fH9P6uI7SVHUznInEMFNFmjNHpJqL75Zrqa1om/sU9z\n6TH8nP6Zc74qI/XuujsEbqs=\n-----END PRIVATE KEY-----\n",
+  "client_email": "pubsubnatura-rir-24@natura-rir-24.iam.gserviceaccount.com",
+  "client_id": "117052504806330419753",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pubsubnatura-rir-24%40natura-rir-24.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
