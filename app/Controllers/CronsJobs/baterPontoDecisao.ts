@@ -14,8 +14,8 @@ export default class BaterPontoController {
 
     console.log(`${dataFormatada}T${hora}:${minuto}:${random}-03:00`)
 
-    // const url = 'https://pontogo-api.herokuapp.com/add-point?company-token-pg=pvMFZKLoI9CpkjHCcm6y&employee-token-pg=97Z4hhrMARnCX8w7QIzB';
-    const url = 'http://127.0.0.1:3333/';
+    const url = 'https://pontogo-api.herokuapp.com/add-point?company-token-pg=pvMFZKLoI9CpkjHCcm6y&employee-token-pg=97Z4hhrMARnCX8w7QIzB';
+    // const url = 'http://127.0.0.1:3333/';
     const body = {
       date: `${dataFormatada}T${hora}:${minuto}:${random}-03:00`,
       latitude: -15.6593449,

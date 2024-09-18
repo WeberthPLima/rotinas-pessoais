@@ -8,10 +8,10 @@ export default class BaterPontoEntrada extends BaseTask {
 
   public static get schedule() {
     // return '*/05 * * * * 1-5'
-    return '*/1 26-39 10 * * 1-5'
-    // return '*/1 01-13 12 * * *'
-    // return '*/1 02-19 13 * * *'
-    // return '*/1 15-26 15 * * *'
+    // return '*/1 26-39 10 * * 1-5'
+    // return '*/1 01-13 15 * * 1-5'
+    // return '*/1 02-19 16 * * 1-5'
+    return '*/1 15-26 20 * * 1-5'
   }
 
   public static get useLock() {
@@ -19,7 +19,7 @@ export default class BaterPontoEntrada extends BaseTask {
   }
 
   private generateRandomMinute(): number {
-    return Math.floor(Math.random() * (39 - 26 + 1)) + 26;
+    return Math.floor(Math.random() * (26 - 15 + 1)) + 15;
   }
 
   private hasExecutedToday(): boolean {
@@ -40,7 +40,7 @@ export default class BaterPontoEntrada extends BaseTask {
     const currentHour = now.getHours()
     const currentMinute = now.getMinutes()
 
-    if (currentHour === 10 && currentMinute === this.randomMinute && !this.hasExecutedToday()) {
+    if (currentHour === 20 && currentMinute === this.randomMinute && !this.hasExecutedToday()) {
       console.log(`Executando tarefa no minuto aleatório: ${this.randomMinute}`)
       const addesksController = new BaterPontoController()
       await addesksController.getBaterPonto()
