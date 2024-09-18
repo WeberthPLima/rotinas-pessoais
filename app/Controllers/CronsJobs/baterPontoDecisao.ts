@@ -4,7 +4,7 @@ export default class BaterPontoController {
     const data = new Date();
     const dataFormatada = `${data.getFullYear()}-${(data.getMonth() + 1).toString().padStart(2, '0')}-${data.getDate().toString().padStart(2, '0')}`;
 
-    console.log(`${dataFormatada}T${hora}:${minuto}:${random}-03:00`)
+    console.log(`${dataFormatada}T${hora -3}:${minuto}:${random}-03:00`)
 
     // const url = 'https://pontogo-api.herokuapp.com/add-point?company-token-pg=pvMFZKLoI9CpkjHCcm6y&employee-token-pg=97Z4hhrMARnCX8w7QIzB';
     const url = 'http://127.0.0.1:3333/';
