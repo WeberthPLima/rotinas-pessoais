@@ -2,7 +2,7 @@ import BaterPontoController from 'App/Controllers/CronsJobs/baterPontoDecisao'
 import { BaseTask } from 'adonis5-scheduler/build/src/Scheduler/Task'
 
 
-export default class BaterPontoEntrada extends BaseTask {
+export default class BaterPontoVoltaSaida extends BaseTask {
   private randomMinute: number = this.generateRandomMinute()
   private lastExecutionDate: Date | null = null // Armazena a última data de execução
 
