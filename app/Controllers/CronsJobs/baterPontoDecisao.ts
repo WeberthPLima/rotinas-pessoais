@@ -1,10 +1,17 @@
+
 export default class BaterPontoController {
-  public async getBaterPonto(hora, minuto) {
+  public async getBaterPonto() {
     var random = Math.floor(Math.random() * 60);
     const data = new Date();
-    const dataFormatada = new Date(data.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }))
-      .toISOString()
-      .slice(0, 10);
+    const dataComFuso = new Date(data.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+    const ano = dataComFuso.getFullYear();
+    const mes = (dataComFuso.getMonth() + 1).toString().padStart(2, '0'); // Mês começa em 0, então +1
+    const dia = dataComFuso.getDate().toString().padStart(2, '0');
+    const hora = dataComFuso.getHours().toString().padStart(2, '0');
+    const minuto = dataComFuso.getMinutes().toString().padStart(2, '0');
+
+    const dataFormatada = `${ano}-${mes}-${dia}`;
+
     console.log(`${dataFormatada}T${hora}:${minuto}:${random}-03:00`)
 
     // const url = 'https://pontogo-api.herokuapp.com/add-point?company-token-pg=pvMFZKLoI9CpkjHCcm6y&employee-token-pg=97Z4hhrMARnCX8w7QIzB';

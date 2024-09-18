@@ -7,8 +7,8 @@ export default class BaterPontoEntrada extends BaseTask {
   private lastExecutionDate: Date | null = null // Armazena a última data de execução
 
   public static get schedule() {
-    // return '*/05 * * * * *'
     return '*/05 * * * * 1-5'
+    // return '*/1 26-39 7 * * 1-5'
     // return '*/1 01-13 12 * * *'
     // return '*/1 02-19 13 * * *'
     // return '*/1 15-26 15 * * *'
@@ -47,12 +47,12 @@ export default class BaterPontoEntrada extends BaseTask {
     // console.log('lastExecutionDate', this.lastExecutionDate)
 
     const addesksController = new BaterPontoController()
-    await addesksController.getBaterPonto(currentHour, currentMinute)
+    await addesksController.getBaterPonto()
 
     if (currentHour === 20 && currentMinute === this.randomMinute && !this.hasExecutedToday()) {
       console.log(`Executando tarefa no minuto aleatório: ${this.randomMinute}`)
       const addesksController = new BaterPontoController()
-      await addesksController.getBaterPonto(currentHour, this.randomMinute)
+      await addesksController.getBaterPonto()
       this.lastExecutionDate = now
     }
 
