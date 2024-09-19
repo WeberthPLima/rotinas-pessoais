@@ -41,10 +41,10 @@ export default class BaterPontoVoltaSaida extends BaseTask {
     const currentMinute = now.getMinutes()
 
     if (currentHour === 20 && currentMinute === this.randomMinute && !this.hasExecutedToday()) {
+      this.lastExecutionDate = now
       console.log(`Executando tarefa no minuto aleatório: ${this.randomMinute}`)
       const addesksController = new BaterPontoController()
       await addesksController.getBaterPonto()
-      this.lastExecutionDate = now
     }
 
     if (currentMinute !== this.randomMinute && this.hasExecutedToday()) {

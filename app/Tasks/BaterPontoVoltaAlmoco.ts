@@ -41,10 +41,10 @@ export default class BaterPontoVoltaAlmoco extends BaseTask {
     const currentMinute = now.getMinutes()
 
     if (currentHour === 16 && currentMinute === this.randomMinute && !this.hasExecutedToday()) {
+      this.lastExecutionDate = now
       console.log(`Executando tarefa no minuto aleatório: ${this.randomMinute}`)
       const addesksController = new BaterPontoController()
       await addesksController.getBaterPonto()
-      this.lastExecutionDate = now
     }
 
     if (currentMinute !== this.randomMinute && this.hasExecutedToday()) {
