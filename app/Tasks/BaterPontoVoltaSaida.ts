@@ -1,17 +1,19 @@
-import BaterPontoController from 'App/Controllers/CronsJobs/baterPontoDecisao'
+import VerifyConditionsController from 'App/Controllers/Http/VerifyConditionsController'
 import { BaseTask } from 'adonis5-scheduler/build/src/Scheduler/Task'
 
+const red = '\x1b[31m%s\x1b[0m'; // Vermelho
 
-export default class BaterPontoVoltaSaida extends BaseTask {
-  private randomMinute: number = this.generateRandomMinute()
-  private lastExecutionDate: Date | null = null // Armazena a última data de execução
+function getRandomInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export default class BaterPontoSaida extends BaseTask {
+  private randomMinute: number = 0
+  private lastExecutionDate: Date | null = null
+  private isNumberRandom: boolean = false
 
   public static get schedule() {
-    // return '*/05 * * * * 1-5'
-    // return '*/1 26-39 10 * * 1-5'
-    // return '*/1 01-13 15 * * 1-5'
-    // return '*/1 02-19 16 * * 1-5'
-    return '*/1 15-26 20 * * 1-5'
+    return '12-28 20 * * 1-5'
   }
 
   public static get useLock() {
@@ -19,14 +21,11 @@ export default class BaterPontoVoltaSaida extends BaseTask {
   }
 
   private generateRandomMinute(): number {
-    return Math.floor(Math.random() * (26 - 15 + 1)) + 15;
+    return getRandomInt(13, 27);
   }
 
   private hasExecutedToday(): boolean {
-    if (!this.lastExecutionDate) {
-      return false
-    }
-
+    this.lastExecutionDate = !this.lastExecutionDate ? new Date() : this.lastExecutionDate
     const now = new Date()
     return (
       now.getFullYear() === this.lastExecutionDate.getFullYear() &&
@@ -36,20 +35,22 @@ export default class BaterPontoVoltaSaida extends BaseTask {
   }
 
   public async handle() {
-    const now = new Date()
-    const currentHour = now.getHours()
-    const currentMinute = now.getMinutes()
+    const verifyConditionsController = new VerifyConditionsController()
+    const { lastExecutionDateReturn, isNumberRandom } = await verifyConditionsController.verifyPonto(
+      this.randomMinute,
+      this.isNumberRandom,
+      this.lastExecutionDate,
+      this.hasExecutedToday.bind(this)
+    );
 
-    if (currentHour === 20 && currentMinute === this.randomMinute && !this.hasExecutedToday()) {
-      this.lastExecutionDate = now
-      console.log(`Executando tarefa no minuto aleatório: ${this.randomMinute}`)
-      const addesksController = new BaterPontoController()
-      await addesksController.getBaterPonto()
-    }
+    this.lastExecutionDate = lastExecutionDateReturn;
+    this.isNumberRandom = isNumberRandom;
 
-    if (currentMinute !== this.randomMinute && this.hasExecutedToday()) {
+    if (!this.isNumberRandom && this.hasExecutedToday()) {
       this.randomMinute = this.generateRandomMinute()
-      console.log(`Próximo minuto aleatório: ${this.randomMinute}`)
+      this.isNumberRandom = true
+      console.log(red, 'Gerando novo minuto aleatório: ', this.randomMinute)
     }
   }
+
 }
