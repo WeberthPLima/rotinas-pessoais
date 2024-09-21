@@ -18,6 +18,12 @@ export default class
   @column({ columnName: 'qtdPessoas' })
   public qtdPessoas: string
 
+  @column({ columnName: 'qtdAdultos' })
+  public qtdAdultos: string
+
+  @column({ columnName: 'qtdCrianca' })
+  public qtdCrianca: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
