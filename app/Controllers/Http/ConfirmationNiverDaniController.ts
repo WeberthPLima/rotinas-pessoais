@@ -3,7 +3,7 @@ import ConfirmationNiverDaniModell from "App/Models/ConfirmationNiverDaniModell"
 export default class VerifyConditionsController {
   public async confirmar({ request, response }) {
     try {
-      let body = request.only(['name', 'telefone', 'qtdPessoas']);
+      let body = request.only(['name', 'telefone', 'qtdAdultos', 'qtdCrianca']);
 
       if (body.telefone) {
         body.telefone = body.telefone.replace(/\D/g, '');
@@ -16,7 +16,7 @@ export default class VerifyConditionsController {
         });
       }
 
-      if (!body.name || !body.telefone || !body.qtdPessoas) {
+      if (!body.name || !body.telefone || !body.qtdAdultos) {
         return response.status(400).json({
           status: false,
           msg: 'Preencha todos os campos!',
@@ -29,7 +29,7 @@ export default class VerifyConditionsController {
       if (verify) {
         return response.status(400).json({
           status: false,
-          msg: `Já existe confirmação!`,
+          msg: `Você já confirmou 😉😜!`,
         });
       }
 
