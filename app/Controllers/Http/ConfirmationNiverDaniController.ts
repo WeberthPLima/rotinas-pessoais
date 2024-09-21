@@ -9,17 +9,17 @@ export default class VerifyConditionsController {
         body.telefone = body.telefone.replace(/\D/g, '');
       }
 
+      if (body.telefone.length != 11) {
+        return response.status(400).json({
+          status: false,
+          msg: 'Telefone inválido!',
+        });
+      }
+
       if (!body.name || !body.telefone || !body.qtdPessoas) {
         return response.status(400).json({
           status: false,
           msg: 'Preencha todos os campos!',
-        });
-      }
-
-      if(body.telefone.length != 11) {
-        return response.status(400).json({
-          status: false,
-          msg: 'Telefone inválido!',
         });
       }
 
