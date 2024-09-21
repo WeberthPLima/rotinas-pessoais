@@ -5,3 +5,4 @@ Route.get('/', async () => {
 })
 
 Route.post('/confirmarAniversariDani', 'ConfirmationNiverDaniController.confirmar')
+Route.get('/confirmarAniversariDani', 'ConfirmationNiverDaniController.getInscritos')

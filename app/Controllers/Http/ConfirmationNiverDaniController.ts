@@ -48,4 +48,22 @@ export default class VerifyConditionsController {
       })
     }
   }
+  public async getInscritos({ response }) {
+    try {
+
+      const data = await ConfirmationNiverDaniModell.all();
+
+      return response.status(200).json({
+        status: true,
+        msg: 'Lista carregada com sucesso',
+        data,
+      })
+    } catch (error) {
+      console.log(error)
+      return response.status(400).json({
+        status: false,
+        error,
+      })
+    }
+  }
 }
