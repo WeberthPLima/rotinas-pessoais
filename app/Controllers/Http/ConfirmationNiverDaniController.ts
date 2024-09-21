@@ -51,7 +51,7 @@ export default class VerifyConditionsController {
   public async getInscritos({ response }) {
     try {
 
-      const data = await ConfirmationNiverDaniModell.all();
+      const data = await ConfirmationNiverDaniModell.query().orderBy('id', 'asc');
 
       return response.status(200).json({
         status: true,
