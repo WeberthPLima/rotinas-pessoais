@@ -4,4 +4,4 @@ Route.get('/', async () => {
   return "API - Rotinas pessoais"
 })
 
-Route.post('/confirmarAniversariDani', 'VerifyConditionsController.confirmar')
+Route.post('/confirmarAniversariDani', 'ConfirmationNiverDaniController.confirmar')
