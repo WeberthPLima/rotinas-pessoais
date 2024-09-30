@@ -13,7 +13,7 @@ export default class BaterPontoHorarioAlmoco extends BaseTask {
   private isNumberRandom: boolean = false
 
   public static get schedule() {
-    return '02-15 16 * * 1-5'
+    return '02-18 16 * * 1-5'
   }
 
   public static get useLock() {
@@ -21,11 +21,11 @@ export default class BaterPontoHorarioAlmoco extends BaseTask {
   }
 
   private generateRandomMinute(): number {
-    return getRandomInt(3, 14);
+    return getRandomInt(3, 19);
   }
 
   private hasExecutedToday(): boolean {
-    this.lastExecutionDate = !this.lastExecutionDate ? new Date() : this.lastExecutionDate
+    this.lastExecutionDate = (!this.lastExecutionDate || this.isNumberRandom) ? new Date() : this.lastExecutionDate
     const now = new Date()
     return (
       now.getFullYear() === this.lastExecutionDate.getFullYear() &&

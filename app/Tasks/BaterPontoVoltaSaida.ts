@@ -25,7 +25,7 @@ export default class BaterPontoSaida extends BaseTask {
   }
 
   private hasExecutedToday(): boolean {
-    this.lastExecutionDate = !this.lastExecutionDate ? new Date() : this.lastExecutionDate
+    this.lastExecutionDate = (!this.lastExecutionDate || this.isNumberRandom) ? new Date() : this.lastExecutionDate
     const now = new Date()
     return (
       now.getFullYear() === this.lastExecutionDate.getFullYear() &&
