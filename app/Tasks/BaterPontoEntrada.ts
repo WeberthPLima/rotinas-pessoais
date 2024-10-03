@@ -38,7 +38,7 @@ export default class BaterPontoEntrada extends BaseTask {
   public async handle() {
     if (!this.lastExecutionDate) {
       const currentDate = new Date();
-      currentDate.setDate(currentDate.getDate() - 1);
+      currentDate.setDate(currentDate.getDate());
       this.lastExecutionDate = currentDate;
     }
 
