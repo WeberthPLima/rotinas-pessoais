@@ -43,6 +43,7 @@ export default class VerifyConditionsController {
     }
     return {
       lastExecutionDateReturn: updatedLastExecutionDate,
+      numberGeneration: false
     };
 
   }
