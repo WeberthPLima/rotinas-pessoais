@@ -9,8 +9,8 @@ export default class VerifyConditionsController {
     lastExecutionDate,
     hasExecutedTodayFn: () => boolean
   ) {
-    const now = new Date()
-    let currentMinute: number = now.getMinutes();
+    const now = new Date();
+    const currentMinute: number = now.getMinutes();
     const minuteAsString: string = currentMinute.toString();
 
     const dataComFuso = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
@@ -20,31 +20,32 @@ export default class VerifyConditionsController {
     const hora = dataComFuso.getHours().toString().padStart(2, '0');
     const sec = dataComFuso.getSeconds().toString().padStart(2, '0');
 
-    console.log(yellow, `Minuto aleatório: `, randomMinute)
-    console.log(`${dia}/${mes}/${ano} - ${hora}:${parseInt(minuteAsString, 10)}:${sec}`)
+    console.log(yellow, `Minuto aleatório: `, randomMinute);
+    console.log(`${dia}/${mes}/${ano} - ${hora}:${parseInt(minuteAsString, 10)}:${sec}`);
 
-    let updatedLastExecutionDate: Date | null = null
+    let updatedLastExecutionDate: Date | null = lastExecutionDate;
 
-    if (lastExecutionDate) {
-      updatedLastExecutionDate = lastExecutionDate;
-    }
+    console.log(yellow, `Minuto atual: `, parseInt(minuteAsString, 10));
+    console.log(yellow, `Executou hoje: `, hasExecutedTodayFn());
 
-    console.log(yellow, `Minuto atual: `, parseInt(minuteAsString, 10))
-    console.log(yellow, `Minuto aleatório: `, randomMinute)
-    console.log(yellow, `Executou hoje: `, hasExecutedTodayFn())
-
-    if (parseInt(minuteAsString, 10) === randomMinute && hasExecutedTodayFn()) {
-      console.log(green, 'Registrando Ponto')
+    if (parseInt(minuteAsString, 10) === randomMinute && !hasExecutedTodayFn()) {
+      console.log(green, 'Registrando Ponto');
       const newDateNext = new Date(now);
-      newDateNext.setDate(now.getDate() + 1);
+      newDateNext.setDate(now.getDate());
       updatedLastExecutionDate = newDateNext;
-      const addesksController = new BaterPontoController()
-      await addesksController.getBaterPonto()
+
+      const addesksController = new BaterPontoController();
+      await addesksController.getBaterPonto();
+
+      return {
+        lastExecutionDateReturn: updatedLastExecutionDate,
+        numberGeneration: false,
+      };
     }
+
     return {
       lastExecutionDateReturn: updatedLastExecutionDate,
-      numberGeneration: false
+      numberGeneration: true,
     };
-
   }
 }

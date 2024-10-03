@@ -7,14 +7,13 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export default class BaterPontoHorarioAlmoco extends BaseTask {
+export default class BaterPontoVoltaAlmoco extends BaseTask {
   private randomMinute: number = 0
   private lastExecutionDate: Date | null = null
   public numberGeneration = false
 
-
   public static get schedule() {
-    return '02-18 16 * * 1-5'
+    return '02-19 16 * * 1-5'
   }
 
   public static get useLock() {
@@ -22,29 +21,29 @@ export default class BaterPontoHorarioAlmoco extends BaseTask {
   }
 
   private generateRandomMinute(): number {
-    return getRandomInt(3, 19);
+    return getRandomInt(3, 18);
   }
 
   private hasExecutedToday(): boolean {
-    const now = new Date()
+    if(!this.lastExecutionDate) {
+      return false;
+    }
+    const now = new Date();
     return (
-      this.lastExecutionDate ?
       now.getFullYear() === this.lastExecutionDate.getFullYear() &&
       now.getMonth() === this.lastExecutionDate.getMonth() &&
       now.getDate() === this.lastExecutionDate.getDate()
-      : false
-    )
+    );
   }
 
   public async handle() {
-    if (!this.lastExecutionDate) {
-      const currentDate = new Date();
-      currentDate.setDate(currentDate.getDate());
-      this.lastExecutionDate = currentDate;
+    if (!this.numberGeneration || !this.hasExecutedToday()) {
+      this.randomMinute = this.generateRandomMinute();
+      this.numberGeneration = true;
+      console.log(red, 'Gerando novo minuto aleatório: ', this.randomMinute);
     }
 
-
-    const verifyConditionsController = new VerifyConditionsController()
+    const verifyConditionsController = new VerifyConditionsController();
     const { lastExecutionDateReturn, numberGeneration } = await verifyConditionsController.verifyPonto(
       this.randomMinute,
       this.lastExecutionDate,
@@ -52,13 +51,6 @@ export default class BaterPontoHorarioAlmoco extends BaseTask {
     );
 
     this.lastExecutionDate = lastExecutionDateReturn;
-    this.numberGeneration = numberGeneration
-
-    if (!this.numberGeneration && this.hasExecutedToday()) {
-      this.randomMinute = this.generateRandomMinute()
-      this.numberGeneration = true
-      console.log(red, 'Gerando novo minuto aleatório: ', this.randomMinute)
-    }
+    this.numberGeneration = numberGeneration;
   }
-
 }
