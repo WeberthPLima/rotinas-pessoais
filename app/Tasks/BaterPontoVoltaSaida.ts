@@ -10,10 +10,9 @@ function getRandomInt(min: number, max: number): number {
 export default class BaterPontoSaida extends BaseTask {
   private randomMinute: number = 0
   private lastExecutionDate: Date | null = null
-  private isNumberRandom: boolean = false
 
   public static get schedule() {
-    return '12-28 20 * * 1-5'
+    return '6-28 20 * * 1-5'
   }
 
   public static get useLock() {
@@ -21,34 +20,39 @@ export default class BaterPontoSaida extends BaseTask {
   }
 
   private generateRandomMinute(): number {
-    return getRandomInt(13, 27);
+    return getRandomInt(7, 27);
   }
 
   private hasExecutedToday(): boolean {
-    this.lastExecutionDate = (!this.lastExecutionDate || this.isNumberRandom) ? new Date() : this.lastExecutionDate
     const now = new Date()
     return (
+      this.lastExecutionDate ?
       now.getFullYear() === this.lastExecutionDate.getFullYear() &&
       now.getMonth() === this.lastExecutionDate.getMonth() &&
       now.getDate() === this.lastExecutionDate.getDate()
+      : false
     )
   }
 
   public async handle() {
+    if (!this.lastExecutionDate) {
+      const currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() - 1);
+      this.lastExecutionDate = currentDate;
+    }
+
+
     const verifyConditionsController = new VerifyConditionsController()
-    const { lastExecutionDateReturn, isNumberRandom } = await verifyConditionsController.verifyPonto(
+    const { lastExecutionDateReturn } = await verifyConditionsController.verifyPonto(
       this.randomMinute,
-      this.isNumberRandom,
       this.lastExecutionDate,
       this.hasExecutedToday.bind(this)
     );
 
     this.lastExecutionDate = lastExecutionDateReturn;
-    this.isNumberRandom = isNumberRandom;
 
-    if (!this.isNumberRandom && this.hasExecutedToday()) {
+    if (this.hasExecutedToday()) {
       this.randomMinute = this.generateRandomMinute()
-      this.isNumberRandom = true
       console.log(red, 'Gerando novo minuto aleatório: ', this.randomMinute)
     }
   }

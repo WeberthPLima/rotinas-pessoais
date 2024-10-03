@@ -6,7 +6,6 @@ const green = '\x1b[32m%s\x1b[0m'; // Verde
 export default class VerifyConditionsController {
   public async verifyPonto(
     randomMinute,
-    isNumberRandom,
     lastExecutionDate,
     hasExecutedTodayFn: () => boolean
   ) {
@@ -25,24 +24,25 @@ export default class VerifyConditionsController {
     console.log(`${dia}/${mes}/${ano} - ${hora}:${parseInt(minuteAsString, 10)}:${sec}`)
 
     let updatedLastExecutionDate: Date | null = null
-    let updatedIsNumberRandom = isNumberRandom;
 
     if (lastExecutionDate) {
       updatedLastExecutionDate = lastExecutionDate;
     }
+
+    console.log(yellow, `Minuto atual: `, parseInt(minuteAsString, 10))
+    console.log(yellow, `Minuto aleatório: `, randomMinute)
+    console.log(yellow, `Executou hoje: `, hasExecutedTodayFn())
 
     if (parseInt(minuteAsString, 10) === randomMinute && hasExecutedTodayFn()) {
       console.log(green, 'Registrando Ponto')
       const newDateNext = new Date(now);
       newDateNext.setDate(now.getDate() + 1);
       updatedLastExecutionDate = newDateNext;
-      updatedIsNumberRandom = false;
       const addesksController = new BaterPontoController()
       await addesksController.getBaterPonto()
     }
     return {
       lastExecutionDateReturn: updatedLastExecutionDate,
-      isNumberRandom: updatedIsNumberRandom
     };
 
   }
