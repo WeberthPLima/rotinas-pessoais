@@ -10,6 +10,7 @@ function getRandomInt(min: number, max: number): number {
 export default class BaterPontoEntrada extends BaseTask {
   private randomMinute: number = 0
   private lastExecutionDate: Date | null = null
+  public numberGeneration = false
 
   public static get schedule() {
     return '24-42 10 * * 1-5'
@@ -43,16 +44,18 @@ export default class BaterPontoEntrada extends BaseTask {
 
 
     const verifyConditionsController = new VerifyConditionsController()
-    const { lastExecutionDateReturn } = await verifyConditionsController.verifyPonto(
+    const { lastExecutionDateReturn, numberGeneration } = await verifyConditionsController.verifyPonto(
       this.randomMinute,
       this.lastExecutionDate,
-      this.hasExecutedToday.bind(this)
+      this.hasExecutedToday.bind(this),
     );
 
     this.lastExecutionDate = lastExecutionDateReturn;
+    this.numberGeneration = numberGeneration
 
-    if (this.hasExecutedToday()) {
+    if (!this.numberGeneration && this.hasExecutedToday()) {
       this.randomMinute = this.generateRandomMinute()
+      this.numberGeneration = true
       console.log(red, 'Gerando novo minuto aleatório: ', this.randomMinute)
     }
   }
