@@ -25,24 +25,23 @@ export default class VerifyConditionsController {
 
     let updatedLastExecutionDate: Date | null = lastExecutionDate;
 
-    console.log(yellow, `Minuto atual: `, parseInt(minuteAsString, 10));
-    console.log(yellow, `Executou hoje: `, hasExecutedTodayFn());
-
+    // Verifica se é o primeiro registro do dia
     if (parseInt(minuteAsString, 10) === randomMinute && !hasExecutedTodayFn()) {
       console.log(green, 'Registrando Ponto');
       const newDateNext = new Date(now);
-      newDateNext.setDate(now.getDate());
       updatedLastExecutionDate = newDateNext;
 
       const addesksController = new BaterPontoController();
       await addesksController.getBaterPonto();
 
+      // Atualiza o lastExecutionDate para garantir que só execute uma vez por dia
       return {
         lastExecutionDateReturn: updatedLastExecutionDate,
-        numberGeneration: false,
+        numberGeneration: false, // Indica que o número já foi gerado e o ponto registrado
       };
     }
 
+    // Se o ponto não foi registrado, mantém o estado
     return {
       lastExecutionDateReturn: updatedLastExecutionDate,
       numberGeneration: true,
