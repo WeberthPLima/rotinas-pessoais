@@ -1,6 +1,7 @@
 
 export default class BaterPontoNODATAController {
   public async getBaterPonto(hora, minuto) {
+    minuto = minuto.toString().padStart(2, '0');
     var random = Math.floor(Math.random() * 60).toString().padStart(2, '0');
     const data = new Date();
     const dataComFuso = new Date(data.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
@@ -9,6 +10,7 @@ export default class BaterPontoNODATAController {
     const dia = dataComFuso.getDate().toString().padStart(2, '0');
 
     const dataFormatada = `${ano}-${mes}-${dia}`;
+
 
     console.log(`${dataFormatada}T${hora}:${minuto}:${random}-03:00`)
 
@@ -45,6 +47,7 @@ export default class BaterPontoNODATAController {
       console.log('Ponto registrado:', data);
     } catch (error) {
       console.error('Erro ao registrar o ponto:', error);
+      console.error('Body error:', body);
     }
   }
 }
