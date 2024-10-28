@@ -7,7 +7,7 @@ function getRandomInt(min: number, max: number): number {
 
 export default class BaterPontoVoltaAlmoco extends BaseTask {
   public static get schedule() {
-    return '0 16 * * 1-5'
+    return '18 16 * * 1-5'
   }
 
   public static get useLock() {

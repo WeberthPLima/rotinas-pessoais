@@ -5,9 +5,9 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export default class BaterPontoVoltaAlmoco extends BaseTask {
+export default class BaterPontoSaidaAlmoco extends BaseTask {
   public static get schedule() {
-    return '0 15 * * 1-5'
+    return '18 15 * * 1-5'
   }
 
   public static get useLock() {
