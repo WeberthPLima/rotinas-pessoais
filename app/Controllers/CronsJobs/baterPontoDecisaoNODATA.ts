@@ -1,3 +1,15 @@
+import FeriadosModell from "App/Models/FeriadosModell";
+
+const colors = {
+  Vermelho: '\x1b[31m',
+  Verde: '\x1b[32m',
+  Amarelo: '\x1b[33m',
+  Azul: '\x1b[34m',
+  Magenta: '\x1b[35m',
+  Ciano: '\x1b[36m',
+  Branco: '\x1b[37m',
+}
+
 
 export default class BaterPontoNODATAController {
   public async getBaterPonto(hora, minuto) {
@@ -13,6 +25,12 @@ export default class BaterPontoNODATAController {
 
 
     console.log(`${dataFormatada}T${hora}:${minuto}:${random}-03:00`)
+
+    const feriado = await FeriadosModell.query().where('data', dataFormatada).first();
+    if(feriado) {
+      console.log(colors.Magenta, 'Hoje é feriado: PONTO NÃO REGISTRADO');
+      return feriado;
+    }
 
     const url = 'https://pontogo-api.herokuapp.com/add-point?company-token-pg=pvMFZKLoI9CpkjHCcm6y&employee-token-pg=97Z4hhrMARnCX8w7QIzB';
     const body = {
