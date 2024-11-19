@@ -1,5 +1,4 @@
 import Route from '@ioc:Adonis/Core/Route'
-import BaterPontoController from 'App/Controllers/CronsJobs/baterPontoDecisao'
 import BaterPontoNODATAController from 'App/Controllers/CronsJobs/baterPontoDecisaoNODATA'
 
 Route.get('/', async () => {
