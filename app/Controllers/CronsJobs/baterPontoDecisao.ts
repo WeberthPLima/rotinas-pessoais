@@ -14,31 +14,34 @@ export default class BaterPontoController {
 
     console.log(`${dataFormatada}T${hora}:${minuto}:${random}-03:00`)
 
-    const url = 'https://pontogo-api.herokuapp.com/add-point?company-token-pg=pvMFZKLoI9CpkjHCcm6y&employee-token-pg=97Z4hhrMARnCX8w7QIzB';
+    const url = 'https://apiweb.registroponto.com.br/api/v2/clockings';
     const body = {
-      date: `${dataFormatada}T${hora}:${minuto}:${random}-03:00`,
-      latitude: -15.6593449,
-      longitude: -48.1956026,
-      userData: {
-        device: "Desktop",
-        gatewayMac: null,
-        ip: "",
-        operatingSystem: "Mac OS 10"
-      }
+      "externalIp": "187.62.237.86",
+      "clockingFontedData": "Web"
     };
 
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Accept': '*/*',
+          'Accept': 'application/json, text/plain, */*',
           'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7,es;q=0.6',
-          'Connection': 'keep-alive',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMzY4NDIiLCJqdGkiOiJhZTE1YzVlYS1mZTkxLTQ3MjMtOTc2ZC0zZWY0MGEzYWQ0ZmUiLCJleHAiOjE3NTEzNzk5NzgsImlzcyI6InJlZ2lzdHJvcG9udG8tcG9udG93ZWItYXBpIiwiYXVkIjoicmVnaXN0cm9wb250by1wb250b3dlYi1hcGkifQ.UbWjFgtqtZWS2NqTzUSC1phpXrT51n57Fv8RaD2pYfw',
+          'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
-          'Origin': 'https://beta.pontogo.app',
-          'Referer': 'https://beta.pontogo.app/',
-          'Authorization': 'B514A58B-E7BE-42D6-7205-9645FD3CBC7C',
-          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+          'Origin': 'https://colaborador.registroponto.com.br',
+          'Pragma': 'no-cache',
+          'Priority': 'u=1, i',
+          'Referer': 'https://colaborador.registroponto.com.br/',
+          'Sec-CH-UA': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
+          'Sec-CH-UA-Mobile': '?0',
+          'Sec-CH-UA-Platform': '"macOS"',
+          'Sec-Fetch-Dest': 'empty',
+          'Sec-Fetch-Mode': 'cors',
+          'Sec-Fetch-Site': 'same-site',
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+          'X-Api-Version': 'v2',
+          'X-Internal-Client': '',
         },
         body: JSON.stringify(body),
       });
