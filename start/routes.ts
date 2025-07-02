@@ -7,6 +7,9 @@ Route.get('/', async () => {
 
 Route.post('/confirmarAniversariDani', 'ConfirmationNiverDaniController.confirmar')
 Route.get('/confirmarAniversariDani', 'ConfirmationNiverDaniController.getInscritos')
+Route.post('/confirmarPresensaCasamento', 'ConfirmationCasamentoController.confirmar')
+Route.get('/mensagensCasamento', 'ConfirmationCasamentoController.mensagemcasamento')
+Route.post('/mensagensCasamento', 'ConfirmationCasamentoController.enviarMensagemcasamento')
 Route.get('/teste', async () => {
   const controller = new BaterPontoNODATAController();
   return controller.getBaterPonto('07', '45');
