@@ -9,5 +9,5 @@ Route.post('/confirmarAniversariDani', 'ConfirmationNiverDaniController.confirma
 Route.get('/confirmarAniversariDani', 'ConfirmationNiverDaniController.getInscritos')
 Route.get('/teste', async () => {
   const controller = new BaterPontoNODATAController();
-  return controller.getBaterPonto('12', '00');
+  return controller.getBaterPonto('07', '45');
 });

@@ -32,6 +32,41 @@ export default class BaterPontoNODATAController {
       return feriado;
     }
 
+    const loginUrl = 'https://apiweb.registroponto.com.br/api/v1/auth/login';
+    const loginBody = {
+      login: 'weberth.lima@decisaosistemas.com.br',
+      password: 'crudrusp2',
+    };
+
+    const loginResponse = await fetch(loginUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7,es;q=0.6',
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+        'Origin': 'https://colaborador.registroponto.com.br',
+        'Pragma': 'no-cache',
+        'Priority': 'u=1, i',
+        'Referer': 'https://colaborador.registroponto.com.br/',
+        'Sec-CH-UA': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
+        'Sec-CH-UA-Mobile': '?0',
+        'Sec-CH-UA-Platform': '"macOS"',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-site',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+      },
+      body: JSON.stringify(loginBody),
+    });
+    const loginData: any = await loginResponse.json();
+
+    if (!loginResponse.ok || !loginData.token) {
+      console.error('Erro ao obter token:', loginData);
+      return;
+    }
+    const token = loginData.token;
+
     const url = 'https://apiweb.registroponto.com.br/api/v2/clockings';
     const body = {
       "externalIp": "187.62.237.86",
@@ -44,7 +79,7 @@ export default class BaterPontoNODATAController {
         headers: {
           'Accept': 'application/json, text/plain, */*',
           'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7,es;q=0.6',
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMzY4NDIiLCJqdGkiOiJhZTE1YzVlYS1mZTkxLTQ3MjMtOTc2ZC0zZWY0MGEzYWQ0ZmUiLCJleHAiOjE3NTEzNzk5NzgsImlzcyI6InJlZ2lzdHJvcG9udG8tcG9udG93ZWItYXBpIiwiYXVkIjoicmVnaXN0cm9wb250by1wb250b3dlYi1hcGkifQ.UbWjFgtqtZWS2NqTzUSC1phpXrT51n57Fv8RaD2pYfw',
+          'Authorization': `Bearer ${token}`,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
           'Origin': 'https://colaborador.registroponto.com.br',
@@ -63,7 +98,7 @@ export default class BaterPontoNODATAController {
         },
         body: JSON.stringify(body),
       });
-
+      // console.log(response)
       const data = await response.json();
       console.log('Ponto registrado:', data);
     } catch (error) {
