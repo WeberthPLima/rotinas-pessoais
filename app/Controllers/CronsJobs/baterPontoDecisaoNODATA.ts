@@ -101,6 +101,38 @@ export default class BaterPontoNODATAController {
       // console.log(response)
       const data = await response.json();
       console.log('Ponto registrado:', data);
+      // Fazendo o logout:
+      try {
+        const logoutUrl = 'https://colaborador.registroponto.com.br/login?_rsc=4414t';
+
+        await fetch(logoutUrl, {
+          method: 'GET',
+          headers: {
+            'accept': '*/*',
+            'accept-language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7,es;q=0.6',
+            'cache-control': 'no-cache',
+            'pragma': 'no-cache',
+            'priority': 'u=1, i',
+            'referer': 'https://colaborador.registroponto.com.br/painel',
+            'rsc': '1',
+            'sec-ch-ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"macOS"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'sentry-trace': 'c217b1e684634771b586556938ee0bcd-b9b83ea02aef15a6-1',
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+          },
+          // No curl tinha cookies (-b) mas no fetch, a gestão de cookies depende do contexto (navegador ou Node).
+          // Em Node.js, se o cookie for necessário, precisa ser passado no header 'cookie', algo como:
+          // 'cookie': '_clck=1oorn4g%7C2%7Cfx9%7C0%7C2007; _clsk=lama8g%7C1751454395315%7C4%7C1%7Ca.clarity.ms%2Fcollect'
+        });
+
+        console.log(colors.Ciano, 'Logout realizado com sucesso');
+      } catch (error) {
+        console.error('Erro ao fazer logout:', error);
+      }
     } catch (error) {
       console.error('Erro ao registrar o ponto:', error);
       console.error('Body error:', body);
