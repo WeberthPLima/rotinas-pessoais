@@ -97,7 +97,7 @@ export default class ConfirmationCasamentoController {
   public async getInscritos({ response }) {
     try {
 
-      const data = await ConfirmationNiverDaniModell.query().orderBy('id', 'asc');
+      const data = await ListaCasamento.query().orderBy('id', 'asc');
 
       return response.status(200).json({
         status: true,
