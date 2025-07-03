@@ -8,6 +8,7 @@ Route.get('/', async () => {
 Route.post('/confirmarAniversariDani', 'ConfirmationNiverDaniController.confirmar')
 Route.get('/confirmarAniversariDani', 'ConfirmationNiverDaniController.getInscritos')
 Route.post('/confirmarPresensaCasamento', 'ConfirmationCasamentoController.confirmar')
+Route.get('/confirmados', 'ConfirmationCasamentoController.getInscritos')
 Route.get('/mensagensCasamento', 'ConfirmationCasamentoController.mensagemcasamento')
 Route.post('/mensagensCasamento', 'ConfirmationCasamentoController.enviarMensagemcasamento')
 Route.get('/teste', async () => {
