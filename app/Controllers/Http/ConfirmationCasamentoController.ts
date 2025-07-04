@@ -96,7 +96,7 @@ export default class ConfirmationCasamentoController {
   public async getInscritos({ response }) {
     try {
 
-      const data = await ListaCasamento.query().orderBy('id', 'asc');
+      const data = await ListaCasamento.query().orderBy('id', 'desc');
 
       return response.status(200).json({
         status: true,
