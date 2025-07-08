@@ -5,7 +5,7 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export default class BaterPontoEntrada extends BaseTask {
+export default class BaterPontoSaidaAlmoco extends BaseTask {
   private static randomMinute: number | null = null
   private static generatedDate: string | null = null
 
@@ -28,18 +28,18 @@ export default class BaterPontoEntrada extends BaseTask {
     const todayKey = this.getTodayKey()
 
     // Verifica se já foi gerado para hoje
-    if (BaterPontoEntrada.generatedDate !== todayKey) {
-      BaterPontoEntrada.randomMinute = getRandomInt(1, 17)
-      BaterPontoEntrada.generatedDate = todayKey
-      console.log(`[12] 🎲 Novo minuto aleatório do dia: ${BaterPontoEntrada.randomMinute}`)
+    if (BaterPontoSaidaAlmoco.generatedDate !== todayKey) {
+      BaterPontoSaidaAlmoco.randomMinute = getRandomInt(1, 17)
+      BaterPontoSaidaAlmoco.generatedDate = todayKey
+      console.log(`[12] 🎲 Novo minuto aleatório do dia: ${BaterPontoSaidaAlmoco.randomMinute}`)
     }
 
-    if (currentMinute === BaterPontoEntrada.randomMinute) {
+    if (currentMinute === BaterPontoSaidaAlmoco.randomMinute) {
       const controller = new BaterPontoNODATAController()
       await controller.getBaterPonto('12', currentMinute)
       console.log(`✅ [12] Ponto batido às 12:${currentMinute}`)
     } else {
-      console.log(`⏳ [12] Agora: ${currentMinute}, esperando: ${BaterPontoEntrada.randomMinute}`)
+      console.log(`⏳ [12] Agora: ${currentMinute}, esperando: ${BaterPontoSaidaAlmoco.randomMinute}`)
     }
   }
 }
