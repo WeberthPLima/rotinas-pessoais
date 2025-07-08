@@ -1,27 +1,12 @@
-import { BaseTask } from 'adonis5-scheduler/build/src/Scheduler/Task'
-import BaterPontoNODATAController from 'App/Controllers/CronsJobs/baterPontoDecisaoNODATA';
+import { BaseRandomTimeTask } from './BaseRandomTimeTask'
 
-function getRandomInt(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-export default class BaterPontoSaidaAlmoco extends BaseTask {
+export default class BaterPonto12h extends BaseRandomTimeTask {
   public static get schedule() {
-    return '18 15 * * 1-5'
+    return '*/1 12 * * 1-5'
   }
 
-  public static get useLock() {
-    return false
-  }
-
-  private generateRandomMinute(): number {
-    return getRandomInt(3, 18);
-  }
-
-  public async handle() {
-    const minutoAleatorio = this.generateRandomMinute();
-
-    const addesksController = new BaterPontoNODATAController();
-    await addesksController.getBaterPonto('12', minutoAleatorio);
-  }
+  readonly hour = 12
+  readonly minuteRange: [1, 17]
+  readonly taskKey = '12h'
+  readonly pontoCode = '12'
 }
