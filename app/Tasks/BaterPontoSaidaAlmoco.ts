@@ -1,12 +1,45 @@
-import { BaseRandomTimeTask } from './BaseRandomTimeTask'
+import { BaseTask } from 'adonis5-scheduler/build/src/Scheduler/Task'
+import BaterPontoNODATAController from 'App/Controllers/CronsJobs/baterPontoDecisaoNODATA'
 
-export default class BaterPonto12h extends BaseRandomTimeTask {
+function getRandomInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export default class BaterPontoEntrada extends BaseTask {
+  private static randomMinute: number | null = null
+  private static generatedDate: string | null = null
+
   public static get schedule() {
-    return '*/1 12 * * 1-5'
+    return '01-17 15 * * 1-5' // Roda de 12:01 até 12:17
   }
 
-  readonly hour = 12
-  readonly minuteRange: [1, 17]
-  readonly taskKey = '12h'
-  readonly pontoCode = '12'
+  public static get useLock() {
+    return true
+  }
+
+  private getTodayKey(): string {
+    const today = new Date()
+    return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+  }
+
+  public async handle() {
+    const now = new Date()
+    const currentMinute = now.getMinutes()
+    const todayKey = this.getTodayKey()
+
+    // Verifica se já foi gerado para hoje
+    if (BaterPontoEntrada.generatedDate !== todayKey) {
+      BaterPontoEntrada.randomMinute = getRandomInt(1, 17)
+      BaterPontoEntrada.generatedDate = todayKey
+      console.log(`[12] 🎲 Novo minuto aleatório do dia: ${BaterPontoEntrada.randomMinute}`)
+    }
+
+    if (currentMinute === BaterPontoEntrada.randomMinute) {
+      const controller = new BaterPontoNODATAController()
+      await controller.getBaterPonto('12', currentMinute)
+      console.log(`✅ [12] Ponto batido às 12:${currentMinute}`)
+    } else {
+      console.log(`⏳ [12] Agora: ${currentMinute}, esperando: ${BaterPontoEntrada.randomMinute}`)
+    }
+  }
 }
