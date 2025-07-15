@@ -111,4 +111,31 @@ export default class ConfirmationCasamentoController {
       })
     }
   }
+  public async informarAdultos({ response, request, params }) {
+    try {
+      const lista = await ListaCasamento.findOrFail(params.id)
+
+      let body = request.only(['adultos', 'criancas']);
+
+      if (body.adultos < 0 || body.criancas < 0) {
+        return response.status(400).json({
+          status: false,
+          msg: 'Valores inválidos!',
+        });
+      }
+      const data = {
+        adultos: body.adultos,
+        criancas: body.criancas,
+      };
+      lista.merge(data)
+      await lista.save()
+      return response.ok(lista)
+    } catch (error) {
+      console.log(error)
+      return response.status(400).json({
+        status: false,
+        error,
+      })
+    }
+  }
 }

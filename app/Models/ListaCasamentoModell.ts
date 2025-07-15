@@ -14,4 +14,10 @@ export default class ListaCasamento extends BaseModel {
 
   @column()
   public companions: string[]
+
+  @column()
+  public adultos: number
+
+  @column()
+  public criancas: number
 }
