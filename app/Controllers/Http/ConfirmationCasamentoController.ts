@@ -138,4 +138,24 @@ export default class ConfirmationCasamentoController {
       })
     }
   }
+  public async informaOriginConvidado({ response, request, params }) {
+    try {
+      const lista = await ListaCasamento.findOrFail(params.id)
+
+      let body = request.only(['origin']);
+
+      const data = {
+        origin: body.origin,
+      };
+      lista.merge(data)
+      await lista.save()
+      return response.ok(lista)
+    } catch (error) {
+      console.log(error)
+      return response.status(400).json({
+        status: false,
+        error,
+      })
+    }
+  }
 }

@@ -20,4 +20,7 @@ export default class ListaCasamento extends BaseModel {
 
   @column()
   public criancas: number
+
+  @column()
+  public origin: string
 }
