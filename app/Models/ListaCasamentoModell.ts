@@ -22,5 +22,11 @@ export default class ListaCasamento extends BaseModel {
   public criancas: number
 
   @column()
+  public qtd_drink: number
+
+  @column()
+  public qtd_cerveja: number
+
+  @column()
   public origin: string
 }
