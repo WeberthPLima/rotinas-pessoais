@@ -115,7 +115,7 @@ export default class ConfirmationCasamentoController {
     try {
       const lista = await ListaCasamento.findOrFail(params.id)
 
-      let body = request.only(['adultos', 'criancas']);
+      let body = request.only(['adultos', 'criancas', 'qtd_drink', 'qtd_cerveja']);
 
       if (body.adultos < 0 || body.criancas < 0) {
         return response.status(400).json({
@@ -126,6 +126,8 @@ export default class ConfirmationCasamentoController {
       const data = {
         adultos: body.adultos,
         criancas: body.criancas,
+        qtd_drink: body.qtd_drink,
+        qtd_cerveja: body.qtd_cerveja,
       };
       lista.merge(data)
       await lista.save()

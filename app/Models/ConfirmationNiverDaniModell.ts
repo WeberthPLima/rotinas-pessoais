@@ -24,6 +24,12 @@ export default class
   @column({ columnName: 'qtdCrianca' })
   public qtdCrianca: string
 
+  @column({ columnName: 'qtd_drink' })
+  public qtd_drink: string
+
+  @column({ columnName: 'qtd_cerveja' })
+  public qtd_cerveja: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
