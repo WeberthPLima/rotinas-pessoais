@@ -13,6 +13,7 @@ Route.put('/confirmados/:id', 'ConfirmationCasamentoController.informarAdultos')
 Route.put('/informaOriginConvidado/:id', 'ConfirmationCasamentoController.informaOriginConvidado')
 Route.get('/mensagensCasamento', 'ConfirmationCasamentoController.mensagemcasamento')
 Route.post('/mensagensCasamento', 'ConfirmationCasamentoController.enviarMensagemcasamento')
+Route.get('/convert-base64', 'Base64Controller.convert')
 Route.get('/teste', async () => {
   const controller = new BaterPontoNODATAController();
   return controller.getBaterPonto('07', '45');
