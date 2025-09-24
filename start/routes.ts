@@ -18,3 +18,7 @@ Route.get('/teste', async () => {
   const controller = new BaterPontoNODATAController();
   return controller.getBaterPonto('07', '45');
 });
+
+// Rotas para Google Sheets API
+Route.get('/getInfo/getMeses', 'GoogleSheetsController.getMeses')
+Route.post('/getInfo/getData', 'GoogleSheetsController.getData')
