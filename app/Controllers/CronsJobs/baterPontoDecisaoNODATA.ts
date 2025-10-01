@@ -32,11 +32,11 @@ export default class BaterPontoNODATAController {
       return feriado;
     }
 
-    const loginUrl = 'https://apiweb.registroponto.com.br/api/v1/auth/login';
-    const loginBody = {
-      login: 'weberth.lima@decisaosistemas.com.br',
-      password: 'crudrusp2',
-    };
+    // const loginUrl = 'https://apiweb.registroponto.com.br/api/v1/auth/login';
+    // const loginBody = {
+    //   login: 'weberth.lima@decisaosistemas.com.br',
+    //   password: 'crudrusp2',
+    // };
 
     // const loginResponse = await fetch(loginUrl, {
     //   method: 'POST',
