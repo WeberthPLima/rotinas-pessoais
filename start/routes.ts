@@ -6,7 +6,7 @@ Route.get('/', async () => {
 })
 
 // Endpoint de teste que retorna boolean true
-Route.get('/teste-true', async () => {
+Route.get('/botao-igrejasnet', async () => {
   return true
 })
 
