@@ -5,6 +5,11 @@ Route.get('/', async () => {
   return "API - Rotinas pessoais"
 })
 
+// Endpoint de teste que retorna boolean true
+Route.get('/teste-true', async () => {
+  return true
+})
+
 Route.post('/confirmarAniversariDani', 'ConfirmationNiverDaniController.confirmar')
 Route.get('/confirmarAniversariDani', 'ConfirmationNiverDaniController.getInscritos')
 Route.post('/confirmarPresensaCasamento', 'ConfirmationCasamentoController.confirmar')
