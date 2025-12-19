@@ -10,7 +10,7 @@ export default class BaterPontoVoltaAlmoco extends BaseTask {
   private static generatedDate: string | null = null
 
   public static get schedule() {
-    return '01-12 16 * * 1-5' // Roda de 13:01 até 13:17
+    return '01-19 16 * * 1-5' // Roda de 13:01 até 13:17
   }
 
   public static get useLock() {
