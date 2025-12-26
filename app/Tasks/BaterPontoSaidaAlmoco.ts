@@ -29,7 +29,7 @@ export default class BaterPontoSaidaAlmoco extends BaseTask {
 
     // Verifica se já foi gerado para hoje
     if (BaterPontoSaidaAlmoco.generatedDate !== todayKey) {
-      BaterPontoSaidaAlmoco.randomMinute = getRandomInt(1, 11)
+      BaterPontoSaidaAlmoco.randomMinute = getRandomInt(1, 20)
       BaterPontoSaidaAlmoco.generatedDate = todayKey
       console.log(`[12] 🎲 Novo minuto aleatório do dia: ${BaterPontoSaidaAlmoco.randomMinute}`)
     }
