@@ -10,7 +10,7 @@ export default class BaterPontoSaidaAlmoco extends BaseTask {
   private static generatedDate: string | null = null
 
   public static get schedule() {
-    return '01-20 15 * * 1-5' // Roda de 12:01 até 12:17
+    return '01-18 15 * * 1-5' // Roda de 12:01 até 12:17
   }
 
   public static get useLock() {
@@ -29,7 +29,7 @@ export default class BaterPontoSaidaAlmoco extends BaseTask {
 
     // Verifica se já foi gerado para hoje
     if (BaterPontoSaidaAlmoco.generatedDate !== todayKey) {
-      BaterPontoSaidaAlmoco.randomMinute = getRandomInt(1, 20)
+      BaterPontoSaidaAlmoco.randomMinute = getRandomInt(1, 18)
       BaterPontoSaidaAlmoco.generatedDate = todayKey
       console.log(`[12] 🎲 Novo minuto aleatório do dia: ${BaterPontoSaidaAlmoco.randomMinute}`)
     }
