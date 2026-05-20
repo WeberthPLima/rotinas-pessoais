@@ -6,9 +6,9 @@ Route.get('/', async () => {
 })
 
 // // Endpoint de teste que retorna boolean true
-// Route.get('/botao-igrejasnet', async () => {
-//   return true
-// })
+Route.get('/botao-igrejasnet', async () => {
+  return true
+})
 
 Route.post('/confirmarAniversariDani', 'ConfirmationNiverDaniController.confirmar')
 Route.get('/confirmarAniversariDani', 'ConfirmationNiverDaniController.getInscritos')
