@@ -10,7 +10,7 @@ export default class BaterPontoEntrada extends BaseTask {
   private static generatedDate: string | null = null
 
   public static get schedule() {
-    return '05-22 10 * * 1-5' // Roda de 07:15 até 07:45
+    return '05-22 11 * * 1-5' // Roda de 07:15 até 07:45
   }
 
   public static get useLock() {
@@ -36,8 +36,8 @@ export default class BaterPontoEntrada extends BaseTask {
 
     if (currentMinute === BaterPontoEntrada.randomMinute) {
       const controller = new BaterPontoNODATAController()
-      await controller.getBaterPonto('07', currentMinute)
-      console.log(`✅ [07] Ponto batido às 07:${currentMinute}`)
+      await controller.getBaterPonto('08', currentMinute)
+      console.log(`✅ [08] Ponto batido às 08:${currentMinute}`)
     } else {
       console.log(`⏳ [07] Agora: ${currentMinute}, esperando: ${BaterPontoEntrada.randomMinute}`)
     }
